@@ -6,124 +6,193 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  SafeAreaView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LineChart } from "react-native-chart-kit";
 import data from "../data.json";
 export default function HomeScreen() {
-  const [timeframe, setTimeframe] = useState("ALL");
-  const [dataType, setDataType] = useState("data");
-  const [price, setPrice] = useState(11943);
-
+  const [selecter, setSelecter] = useState(false);
+  const dataTime = [
+    {
+      id: 1,
+      name: "1D",
+      price: "11943",
+      datasets: [
+        {
+          data: [
+            9, 8, 7, 8, 10, 11, 8, 12, 9, 13, 14, 12, 10, 9, 11, 10, 12, 14, 10,
+            9, 12, 11, 13,
+          ],
+          strokeWidth: 3,
+        },
+      ],
+    },
+    {
+      id: 2,
+      name: "1W",
+      price: "98733",
+      number: "12k",
+      datasets: [
+        {
+          data: [
+            9, 8, 7, 8, 10, 11, 8, 12, 9, 1, 14, 12, 10, 9, 11, 10, 12, 14, 10,
+            9, 12, 11, 13,
+          ],
+          strokeWidth: 3,
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: "1M",
+      price: "45570",
+      number: "10k",
+      datasets: [
+        {
+          data: [
+            9, 8, 7, 8, 10, 11, 8, 12, 9, 13, 14, 12, 10, 9, 8, 14, 12, 10, 7,
+            9, 12, 11, 13,
+          ],
+          strokeWidth: 3,
+        },
+      ],
+    },
+    {
+      id: 4,
+      name: "3M",
+      price: "78554",
+      datasets: [
+        {
+          data: [
+            9, 8, 7, 6, 10, 12, 8, 12, 9, 13, 10, 12, 10, 6, 11, 17, 12, 14, 10,
+            9, 12, 11, 13,
+          ],
+          strokeWidth: 3,
+        },
+      ],
+    },
+    {
+      id: 5,
+      name: "1Y",
+      price: "12673",
+      datasets: [
+        {
+          data: [
+            9, 8, 7, 8, 6, 11, 6, 12, 14, 13, 10, 8, 10, 9, 13, 10, 12, 8, 10,
+            9, 12, 11, 13,
+          ],
+          strokeWidth: 3,
+        },
+      ],
+    },
+    {
+      id: 6,
+      name: "ALL",
+      price: "45773",
+      datasets: [
+        {
+          data: [
+            9, 8, 7, 8, 7, 11, 8, 12, 9, 13, 14, 12, 10, 6, 9, 12, 8, 10, 13, 9,
+            8, 11, 13,
+          ],
+          strokeWidth: 3,
+        },
+      ],
+    },
+  ];
   const [chartData, setChartData] = useState({
+    price: "11943",
     datasets: [
       {
-        data: [10, 14, 8, 6, 6, 9],
-        color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
-        strokeWidth: 2,
+        data: [
+          9, 8, 7, 8, 10, 11, 8, 12, 9, 13, 14, 12, 10, 9, 11, 10, 12, 14, 10,
+          9, 12, 11, 13,
+        ],
+        strokeWidth: 3,
       },
     ],
   });
+  const number = [
+    {
+      id: 1,
+      number: "14k",
+    },
+    {
+      id: 2,
+      number: "12k",
+    },
+    {
+      id: 3,
+      number: "10k",
+    },
+    {
+      id: 4,
+      number: "8k",
+    },
+    {
+      id: 5,
+      number: "6k",
+    },
+  ];
 
-  const generateFakeData = (timeframe, dataType) => {
-    const labels = [];
-    const data = [];
-
-    switch (timeframe) {
-      case "D":
-        for (let i = 0; i < 24; i++) {
-          labels.push(`${i}:00`);
-          data.push(Math.floor(Math.random() * 14));
-        }
-        break;
-      case "W":
-        for (let i = 0; i < 7; i++) {
-          labels.push(`Day ${i + 1}`);
-          data.push(Math.floor(Math.random() * 14));
-        }
-        break;
-      case "M":
-        for (let i = 0; i < 31; i++) {
-          labels.push(`Day ${i + 1}`);
-          data.push(Math.floor(Math.random() * 14));
-        }
-        break;
-      case "Y":
-        for (let i = 0; i < 12; i++) {
-          labels.push(`Month ${i + 1}`);
-          data.push(Math.floor(Math.random() * 14));
-        }
-        break;
-      case "ALL":
-        for (let i = 0; i < 5; i++) {
-          labels.push(`Year ${i + 1}`);
-          data.push(Math.floor(Math.random() * 14));
-        }
-        break;
-      default:
-        break;
-    }
-
-    if (dataType === "price") {
-      data.forEach((value, index, array) => {
-        array[index] = value * 14;
-      });
-    }
-    return {
-      labels: labels,
-      datasets: [
-        {
-          data: data,
-          color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
-          strokeWidth: 2,
-        },
-      ],
-    };
-  };
-  const handleButtonPress = () => {
-    const newData = generateFakeData(timeframe, dataType);
-    setChartData(newData);
-  };
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View style={{ flex: 1 }}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
+        <View>
           <View style={styles.heading}>
             <Text style={styles.text}>Home</Text>
           </View>
           <View style={styles.wrap}>
             <View style={styles.chart}>
-              <Text style={styles.sty_title}>${price}{chartData.price}</Text>
+              <Text style={styles.sty_title}>${chartData.price}</Text>
               <LineChart
                 data={chartData}
-                onDataPointClick={({ index }) => {
-                  console.log("dada");
-                }}
-                width={Dimensions.get("window").width - 20} // from react-native
+                width={Dimensions.get("window").width - 50} // from react-native
                 height={220}
-                withVerticalLabels={false}
                 yAxisSuffix="k"
                 withHorizontalLines={false}
+                withHorizontalLabels={false}
                 withVerticalLines={false}
                 chartConfig={{
+                  color: () => "#e28743",
                   backgroundGradientFrom: "#fff",
-                  yAxis: { visible: false },
-                  grid: { visible: false },
                   backgroundGradientTo: "#fff",
                   decimalPlaces: 0,
-                  color: (opacity = 255) => `rgba(0, 2, 5, ${opacity})`,
                   withDots: false,
                   propsForDots: {
                     r: "",
-                    strokeWidth: "2",
                   },
                 }}
                 bezier
                 style={{
                   marginTop: 15,
+                  borderRadius: 16,
+                  paddingRight: 10,
+                  marginBottom:-20
                 }}
               />
+              <View
+                style={{
+                  position: "absolute",
+                  right: 5,
+                  height: 200,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: 30,
+                  top: 30,
+                }}
+              >
+                {number.map((item) => {
+                  return (
+                    <Text
+                      key={item.id}
+                      style={{ height: 35, color: "#B0BAC2",fontSize:12 }}
+                    >
+                      {item.number}
+                    </Text>
+                  );
+                })}
+              </View>
               <View
                 style={{
                   flexDirection: "row",
@@ -132,42 +201,31 @@ export default function HomeScreen() {
                   paddingHorizontal: 10,
                 }}
               >
-                <TouchableOpacity
-                  onPress={handleButtonPress}
-                  style={styles.btn}
-                >
-                  <Text>1D</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleButtonPress}
-                  style={styles.btn}
-                >
-                  <Text>1W</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleButtonPress}
-                  style={styles.btn}
-                >
-                  <Text>1M</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleButtonPress}
-                  style={styles.btn}
-                >
-                  <Text>3M</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleButtonPress}
-                  style={styles.btn}
-                >
-                  <Text>1Y</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleButtonPress}
-                  style={styles.btn}
-                >
-                  <Text>ALL</Text>
-                </TouchableOpacity>
+                {dataTime.map((item, index) => {
+                  return (
+                    <TouchableOpacity
+                    key={item.id}
+                      onPress={() => {
+                        setChartData(item), setSelecter(index);
+                      }}
+                      style={[
+                        styles.btn,
+                        {
+                          backgroundColor: index == selecter ? "#617180" : null,
+                        },
+                      ]}
+                    >
+                      <Text
+                        style={{
+                          color: index == selecter ? "#fff" : null,
+                          fontWeight: "600",
+                        }}
+                      >
+                        {item.name}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
               </View>
             </View>
             <View style={styles.listItem}>
@@ -180,7 +238,7 @@ export default function HomeScreen() {
                     style={styles.item}
                     key={item.id}
                     onPress={() => {
-                      setPrice(item.price);
+                      setPrice(item);
                     }}
                   >
                     <View style={{ flexDirection: "row" }}>
@@ -226,6 +284,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 10,
     paddingVertical: 10,
+    flex:1, 
   },
   chart: {
     height: "40%",
@@ -282,11 +341,10 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   btn: {
-    width: "14%",
-    height: 35,
+    width: "12%",
+    height: 45,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#497BD0",
     borderRadius: 10,
   },
 });

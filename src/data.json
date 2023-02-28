@@ -5,52 +5,31 @@
       "name": "WEALTHFRONT",
       "title": "Personal Savings",
       "image":"https://play-lh.googleusercontent.com/5S8jg7ib715oTaXjOl0ZwtUarz6mszRJXu6Z9sCusXWP1nULo33HxJWFDYq_1BvLRA",
-      "price": "9,275",
-      "labels": ["1D", "1W", "1M", "3M", "1Y", "ALL"],
-      " datasets": [
-        {
-          "data": [14, 10, 6, 8, 4, 6, 6, 3, 4, 10, 3, 8]
-        }
-      ]
+      "price": "9,275"
+      
     },
     {
       "id": 2,
       "name": "BANK OF AMERICA",
       "title": "BofA Ckeckings",
       "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgtCABoe9E-0I18DIcS-DtsV71oQ0cpZbRWA&usqp=CAU",
-      "price": "12,030",
-      "labels": ["1D", "1W", "1M", "3M", "1Y", "ALL"],
-      " datasets": [
-        {
-          "data": [12, 10, 6, 8, 9, 6, 4, 3, 4, 10, 6, 8]
-        }
-      ]
+      "price": "12,030"
     },
     {
       "id": 3,
       "name": "ROBINHOOD",
       "title": "Robinhood Cash",
       "price": "7,123",
-      "image":"https://assets.materialup.com/uploads/e28ab279-b02b-483a-9521-669782128e6f/0x0ss-85.jpg",
-      "labels": ["1D", "1W", "1M", "3M", "1Y", "ALL"],
-      " datasets": [
-        {
-          "data": [13, 3, 7, 3, 7, 9, 8, 6, 7, 8, 2, 5]
-        }
-      ]
+      "image":"https://assets.materialup.com/uploads/e28ab279-b02b-483a-9521-669782128e6f/0x0ss-85.jpg"
+     
     },
     {
       "id": 4,
       "name": "ROBINHOOD",
       "title": "Robinhood Cash",
-      "price": "7,123",
-      "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/800px-Bitcoin.svg.png",
-      "labels": ["1D", "1W", "1M", "3M", "1Y", "ALL"],
-      " datasets": [
-        {
-          "data": [13, 3, 7, 3, 7, 9, 8, 6, 7, 8, 2, 5]
-        }
-      ]
+      "price": "15,172",
+      "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/800px-Bitcoin.svg.png"
     }
+    
   ]
 }
